@@ -7,7 +7,7 @@ import 'package:fancy_bottom_navigation/paint/half_clipper.dart';
 import 'package:fancy_bottom_navigation/paint/half_painter.dart';
 import 'package:flutter/material.dart';
 
-const double CIRCLE_SIZE = 60;
+const double CIRCLE_SIZE = 40;
 const double ARC_HEIGHT = 70;
 const double ARC_WIDTH = 90;
 const double CIRCLE_OUTLINE = 10;
@@ -116,31 +116,38 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
         ClipRRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(
-              height: BAR_HEIGHT,
-              decoration: BoxDecoration(color: barBackgroundColor, boxShadow: [
-                BoxShadow(
-                    color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
-              ]),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: widget.tabs
-                    .map((t) => TabItem(
-                        uniqueKey: t.key,
-                        selected: t.key == widget.tabs[currentSelected].key,
-                        iconData: t.iconData,
-                        title: t.title,
-                        iconColor: inactiveIconColor,
-                        textColor: textColor,
-                        callbackFunction: (uniqueKey) {
-                          int selected = widget.tabs.indexWhere(
-                              (tabData) => tabData.key == uniqueKey);
-                          widget.onTabChangedListener(selected);
-                          _setSelected(uniqueKey);
-                          _initAnimationAndStart(_circleAlignX, 1);
-                        }))
-                    .toList(),
+            child: Opacity(
+              opacity: 0.8,
+              child: Container(
+                height: BAR_HEIGHT,
+                decoration: BoxDecoration(
+                    color: barBackgroundColor,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black12,
+                          offset: Offset(0, -1),
+                          blurRadius: 8)
+                    ]),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: widget.tabs
+                      .map((t) => TabItem(
+                          uniqueKey: t.key,
+                          selected: t.key == widget.tabs[currentSelected].key,
+                          iconData: t.iconData,
+                          title: t.title,
+                          iconColor: inactiveIconColor,
+                          textColor: textColor,
+                          callbackFunction: (uniqueKey) {
+                            int selected = widget.tabs.indexWhere(
+                                (tabData) => tabData.key == uniqueKey);
+                            widget.onTabChangedListener(selected);
+                            _setSelected(uniqueKey);
+                            _initAnimationAndStart(_circleAlignX, 1);
+                          }))
+                      .toList(),
+                ),
               ),
             ),
           ),
