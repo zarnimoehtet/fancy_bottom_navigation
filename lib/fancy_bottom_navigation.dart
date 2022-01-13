@@ -1,5 +1,7 @@
 library fancy_bottom_navigation;
 
+import 'dart:ui';
+
 import 'package:fancy_bottom_navigation/internal/tab_item.dart';
 import 'package:fancy_bottom_navigation/paint/half_clipper.dart';
 import 'package:fancy_bottom_navigation/paint/half_painter.dart';
@@ -111,31 +113,36 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
       overflow: Overflow.visible,
       alignment: Alignment.bottomCenter,
       children: <Widget>[
-        Container(
-          height: BAR_HEIGHT,
-          decoration: BoxDecoration(color: barBackgroundColor, boxShadow: [
-            BoxShadow(
-                color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
-          ]),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: widget.tabs
-                .map((t) => TabItem(
-                    uniqueKey: t.key,
-                    selected: t.key == widget.tabs[currentSelected].key,
-                    iconData: t.iconData,
-                    title: t.title,
-                    iconColor: inactiveIconColor,
-                    textColor: textColor,
-                    callbackFunction: (uniqueKey) {
-                      int selected = widget.tabs
-                          .indexWhere((tabData) => tabData.key == uniqueKey);
-                      widget.onTabChangedListener(selected);
-                      _setSelected(uniqueKey);
-                      _initAnimationAndStart(_circleAlignX, 1);
-                    }))
-                .toList(),
+        ClipRRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: Container(
+              height: BAR_HEIGHT,
+              decoration: BoxDecoration(color: barBackgroundColor, boxShadow: [
+                BoxShadow(
+                    color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
+              ]),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: widget.tabs
+                    .map((t) => TabItem(
+                        uniqueKey: t.key,
+                        selected: t.key == widget.tabs[currentSelected].key,
+                        iconData: t.iconData,
+                        title: t.title,
+                        iconColor: inactiveIconColor,
+                        textColor: textColor,
+                        callbackFunction: (uniqueKey) {
+                          int selected = widget.tabs.indexWhere(
+                              (tabData) => tabData.key == uniqueKey);
+                          widget.onTabChangedListener(selected);
+                          _setSelected(uniqueKey);
+                          _initAnimationAndStart(_circleAlignX, 1);
+                        }))
+                    .toList(),
+              ),
+            ),
           ),
         ),
         Positioned.fill(
