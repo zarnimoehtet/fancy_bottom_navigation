@@ -153,7 +153,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
           ),
         ),
         Positioned.fill(
-          top: -(CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE) / 2,
+          top: -(CIRCLE_SIZE + CIRCLE_OUTLINE) / 2,
           child: Container(
             child: AnimatedAlign(
               duration: Duration(milliseconds: ANIM_DURATION),
@@ -169,36 +169,29 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                     child: Stack(
                       alignment: Alignment.center,
                       children: <Widget>[
-                        SizedBox(
-                          height:
-                              CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
-                          width:
-                              CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
-                          child: ClipRect(
-                              clipper: HalfClipper(),
-                              child: BackdropFilter(
-                                filter:
-                                    ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                                child: Opacity(
-                                  opacity: 0.8,
-                                  child: Container(
-                                    child: Center(
-                                      child: Container(
-                                          width: CIRCLE_SIZE + CIRCLE_OUTLINE,
-                                          height: CIRCLE_SIZE + CIRCLE_OUTLINE,
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              shape: BoxShape.circle,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                    color: Colors.black12,
-                                                    blurRadius: 8)
-                                              ])),
-                                    ),
-                                  ),
-                                ),
-                              )),
-                        ),
+                        // SizedBox(
+                        //   height:
+                        //       CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
+                        //   width:
+                        //       CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
+                        //   child: ClipRect(
+                        //       clipper: HalfClipper(),
+                        //       child: Container(
+                        //         child: Center(
+                        //           child: Container(
+                        //               width: CIRCLE_SIZE + CIRCLE_OUTLINE,
+                        //               height: CIRCLE_SIZE + CIRCLE_OUTLINE,
+                        //               decoration: BoxDecoration(
+                        //                   color: Colors.white,
+                        //                   shape: BoxShape.circle,
+                        //                   boxShadow: [
+                        //                     BoxShadow(
+                        //                         color: Colors.black12,
+                        //                         blurRadius: 8)
+                        //                   ])),
+                        //         ),
+                        //       )),
+                        // ),
                         // SizedBox(
                         //     height: ARC_HEIGHT,
                         //     width: ARC_WIDTH,
@@ -210,7 +203,8 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                           width: CIRCLE_SIZE,
                           child: Container(
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle, color: circleColor),
+                                shape: BoxShape.circle,
+                                color: circleColor.withOpacity(0.8)),
                             child: Padding(
                               padding: const EdgeInsets.all(0.0),
                               child: AnimatedOpacity(
