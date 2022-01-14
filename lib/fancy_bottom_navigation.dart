@@ -153,7 +153,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
           ),
         ),
         Positioned.fill(
-          top: -(CIRCLE_SIZE + SHADOW_ALLOWANCE + CIRCLE_OUTLINE + 10) / 2,
+          top: -(CIRCLE_SIZE + SHADOW_ALLOWANCE + CIRCLE_OUTLINE) / 2,
           child: Container(
             child: AnimatedAlign(
               duration: Duration(milliseconds: ANIM_DURATION),
