@@ -177,29 +177,33 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                     child: Stack(
                       alignment: Alignment.center,
                       children: <Widget>[
-                        // SizedBox(
-                        //   height:
-                        //       circleSize + circleOutline + shadowAllowance,
-                        //   width:
-                        //       circleSize + circleOutline + shadowAllowance,
-                        //   child: ClipRect(
-                        //       clipper: HalfClipper(),
-                        //       child: Container(
-                        //         child: Center(
-                        //           child: Container(
-                        //               width: circleSize + circleOutline,
-                        //               height: circleSize + circleOutline,
-                        //               decoration: BoxDecoration(
-                        //                   color: Colors.white,
-                        //                   shape: BoxShape.circle,
-                        //                   boxShadow: [
-                        //                     BoxShadow(
-                        //                         color: Colors.black12,
-                        //                         blurRadius: 8)
-                        //                   ])),
-                        //         ),
-                        //       )),
-                        // ),
+                        SizedBox(
+                          height: widget.circleSize +
+                              widget.circleOutline +
+                              widget.shadowAllowance,
+                          width: widget.circleSize +
+                              widget.circleOutline +
+                              widget.shadowAllowance,
+                          child: ClipRect(
+                              clipper: HalfClipper(),
+                              child: Container(
+                                child: Center(
+                                  child: Container(
+                                      width: widget.circleSize +
+                                          widget.circleOutline,
+                                      height: widget.circleSize +
+                                          widget.circleOutline,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          shape: BoxShape.circle,
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: Colors.black12,
+                                                blurRadius: 8)
+                                          ])),
+                                ),
+                              )),
+                        ),
                         SizedBox(
                             height: widget.arcHeight,
                             width: widget.arcWidth,
