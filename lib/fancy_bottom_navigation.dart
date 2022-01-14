@@ -7,11 +7,11 @@ import 'package:fancy_bottom_navigation/paint/half_clipper.dart';
 import 'package:fancy_bottom_navigation/paint/half_painter.dart';
 import 'package:flutter/material.dart';
 
-const double CIRCLE_SIZE = 60;
+const double CIRCLE_SIZE = 35;
 const double ARC_HEIGHT = 70;
 const double ARC_WIDTH = 90;
 const double CIRCLE_OUTLINE = 10;
-const double SHADOW_ALLOWANCE = 20;
+const double SHADOW_ALLOWANCE = 10;
 const double BAR_HEIGHT = 60;
 
 class FancyBottomNavigation extends StatefulWidget {
@@ -176,19 +176,26 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                               CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
                           child: ClipRect(
                               clipper: HalfClipper(),
-                              child: Container(
-                                child: Center(
+                              child: BackdropFilter(
+                                filter:
+                                    ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                child: Opacity(
+                                  opacity: 0.8,
                                   child: Container(
-                                      width: CIRCLE_SIZE + CIRCLE_OUTLINE,
-                                      height: CIRCLE_SIZE + CIRCLE_OUTLINE,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle,
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Colors.black12,
-                                                blurRadius: 8)
-                                          ])),
+                                    child: Center(
+                                      child: Container(
+                                          width: CIRCLE_SIZE + CIRCLE_OUTLINE,
+                                          height: CIRCLE_SIZE + CIRCLE_OUTLINE,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              shape: BoxShape.circle,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Colors.black12,
+                                                    blurRadius: 8)
+                                              ])),
+                                    ),
+                                  ),
                                 ),
                               )),
                         ),
