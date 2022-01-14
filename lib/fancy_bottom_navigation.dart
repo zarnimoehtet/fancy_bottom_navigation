@@ -153,7 +153,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
           ),
         ),
         Positioned.fill(
-          top: -(CIRCLE_SIZE + SHADOW_ALLOWANCE) / 2,
+          top: -(CIRCLE_SIZE + SHADOW_ALLOWANCE + CIRCLE_OUTLINE) / 2,
           child: Container(
             child: AnimatedAlign(
               duration: Duration(milliseconds: ANIM_DURATION),
@@ -192,12 +192,12 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                                 ),
                               )),
                         ),
-                        // SizedBox(
-                        //     height: ARC_HEIGHT,
-                        //     width: ARC_WIDTH,
-                        //     child: CustomPaint(
-                        //       painter: HalfPainter(barBackgroundColor),
-                        //     )),
+                        SizedBox(
+                            height: ARC_HEIGHT,
+                            width: ARC_WIDTH,
+                            child: CustomPaint(
+                              painter: HalfPainter(barBackgroundColor),
+                            )),
                         SizedBox(
                           height: CIRCLE_SIZE,
                           width: CIRCLE_SIZE,
